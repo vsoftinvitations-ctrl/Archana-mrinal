@@ -4,9 +4,9 @@ export function renderWeddingDetails() {
   const { texts, event } = weddingData;
 
   // Google Calendar URL generator
-  const startDateFormatted = "20261212T054500Z"; // 11:15 AM IST is 05:45 UTC
-  const endDateFormatted = "20261212T093000Z";   // 03:00 PM IST is 09:30 UTC
-  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.googleCalendarTitle)}&dates=${startDateFormatted}/${endDateFormatted}&details=${encodeURIComponent(event.googleCalendarDescription)}&location=${encodeURIComponent(event.venueName + ', ' + event.city)}`;
+  const startDateFormatted = "20261213T060000Z"; // 11:30 AM IST is 06:00 UTC (13 Dec 2026)
+  const endDateFormatted = "20261213T070000Z";   // 12:30 PM IST is 07:00 UTC
+  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.googleCalendarTitle)}&dates=${startDateFormatted}/${endDateFormatted}&details=${encodeURIComponent(event.googleCalendarDescription)}&location=${encodeURIComponent(event.venueName + ', ' + (event.venueAddress ? event.venueAddress + ', ' : '') + event.city)}`;
 
   return `
     <section id="invitation-details" class="invitation-details-section">

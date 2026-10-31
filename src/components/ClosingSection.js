@@ -20,9 +20,9 @@ export function renderClosingSection() {
       </div>
 
       <div class="closing-couple-names reveal-on-scroll">
-        <span class="closing-name">Arunima</span>
+        <span class="closing-name">${bride.shortName || bride.name}</span>
         <span class="closing-script-amp">&amp;</span>
-        <span class="closing-name">Abhijith</span>
+        <span class="closing-name">${groom.shortName || groom.name}</span>
       </div>
     </footer>
   `;

@@ -22,15 +22,15 @@ export function renderOpeningSection() {
 
           <!-- Couple Names (Central Visual Focus) -->
           <h1 class="opening-couple-names reveal-on-scroll revealed reveal-delay-2">
-            <span class="couple-name bride-name">${bride.shortName || 'Dr. Arunima'}</span>
+            <span class="couple-name bride-name">${bride.shortName || bride.name}</span>
             <span class="opening-couple-ampersand">&amp;</span>
-            <span class="couple-name groom-name">${groom.shortName || 'Abhijith'}</span>
+            <span class="couple-name groom-name">${groom.shortName || groom.name}</span>
           </h1>
 
           <!-- Date & Location Minimal Standard Block -->
           <div class="opening-date-location reveal-on-scroll revealed reveal-delay-3">
             <div class="opening-date-text">${event.dateDisplay}</div>
-            <div class="opening-venue-text">${event.venueName} &bull; ${event.city}</div>
+            <div class="opening-venue-text">${event.venueName} &bull; ${event.venueAddress || event.city}</div>
           </div>
 
           <!-- Subtle Minimal Gold Divider -->

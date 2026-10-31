@@ -2368,7 +2368,7 @@ section {
 /* ==========================================================================
    WEDDING PRELOADER — BRITTANY SIGNATURE HANDWRITING ANIMATION
    Background: /assets/preloder.png
-   Center: Arunima & Abhijith with real-time calligraphy ink stroke animation
+   Center: Archana & Mrinal with real-time calligraphy ink stroke animation
    ========================================================================== */
 
 body.preloader-active {
@@ -2614,7 +2614,9 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 .script-rahul,
 .script-anjana,
 .script-arunima,
-.script-abhijith {
+.script-abhijith,
+.script-archana,
+.script-mrinal {
   margin: 0.05em 0;
 }
 
@@ -2637,7 +2639,9 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 .script-rahul .script-text,
 .script-anjana .script-text,
 .script-arunima .script-text,
-.script-abhijith .script-text {
+.script-abhijith .script-text,
+.script-archana .script-text,
+.script-mrinal .script-text {
   font-size: clamp(3.2rem, 13vw, 5.6rem);
   clip-path: inset(-60px 105% -60px -60px);
   opacity: 0;
@@ -2659,9 +2663,10 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 }
 
 /* Handwriting Keyframe Animations — leisurely, graceful pacing */
-/* Line 1: Arunima / Rahul (1.7s duration starting at 0.6s) */
+/* Line 1: Archana / Arunima / Rahul (1.7s duration starting at 0.6s) */
 .preloader-animating .script-rahul .script-text,
-.preloader-animating .script-arunima .script-text {
+.preloader-animating .script-arunima .script-text,
+.preloader-animating .script-archana .script-text {
   animation: writeName1 1.7s cubic-bezier(0.35, 0, 0.25, 1) 0.6s forwards;
 }
 
@@ -2699,9 +2704,10 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   }
 }
 
-/* Line 3: Abhijith / Anjana (1.8s duration starting at 2.9s) */
+/* Line 3: Mrinal / Abhijith / Anjana (1.8s duration starting at 2.9s) */
 .preloader-animating .script-anjana .script-text,
-.preloader-animating .script-abhijith .script-text {
+.preloader-animating .script-abhijith .script-text,
+.preloader-animating .script-mrinal .script-text {
   animation: writeName2 1.8s cubic-bezier(0.35, 0, 0.25, 1) 2.9s forwards;
 }
 
@@ -2737,7 +2743,8 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 }
 
 .preloader-animating .script-rahul .calligraphy-pen-spark,
-.preloader-animating .script-arunima .calligraphy-pen-spark {
+.preloader-animating .script-arunima .calligraphy-pen-spark,
+.preloader-animating .script-archana .calligraphy-pen-spark {
   animation: sparkMoveLine1 1.7s cubic-bezier(0.35, 0, 0.25, 1) 0.6s forwards;
 }
 
@@ -2767,7 +2774,8 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 }
 
 .preloader-animating .script-anjana .calligraphy-pen-spark,
-.preloader-animating .script-abhijith .calligraphy-pen-spark {
+.preloader-animating .script-abhijith .calligraphy-pen-spark,
+.preloader-animating .script-mrinal .calligraphy-pen-spark {
   animation: sparkMoveLine2 1.8s cubic-bezier(0.35, 0, 0.25, 1) 2.9s forwards;
 }
 
@@ -2830,7 +2838,9 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 .preloader-script-container.shimmer-active .script-rahul .script-text,
 .preloader-script-container.shimmer-active .script-anjana .script-text,
 .preloader-script-container.shimmer-active .script-arunima .script-text,
-.preloader-script-container.shimmer-active .script-abhijith .script-text {
+.preloader-script-container.shimmer-active .script-abhijith .script-text,
+.preloader-script-container.shimmer-active .script-archana .script-text,
+.preloader-script-container.shimmer-active .script-mrinal .script-text {
   clip-path: none !important;
   opacity: 1 !important;
   visibility: visible !important;

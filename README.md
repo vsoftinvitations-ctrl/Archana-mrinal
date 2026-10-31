@@ -1,4 +1,4 @@
-# Arunima & Abhijith
+# Archana & Mrinal
 
-Wedding Digital Invitation website for Dr. Arunima Madhu & Abhijith V Nair.
+Wedding Digital Invitation website for Archana & Mrinal.
 

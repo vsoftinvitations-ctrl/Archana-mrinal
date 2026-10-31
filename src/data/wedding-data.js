@@ -1,69 +1,64 @@
 /**
  * Wedding Digital Invitation Data Configuration (English Only)
- * Arunima & Abhijith Wedding Invitation
+ * Archana & Mrinal Wedding Invitation
  */
 
 export const weddingData = {
   // Couple Information
   bride: {
-    name: "Dr. Arunima Madhu",
-    shortName: "Dr. Arunima",
+    name: "Archana",
+    shortName: "Archana",
     qualifications: "",
     image: "/assets/bride.jpg",
     bio: "Daughter of our beloved family, embarking on a sacred new chapter of life with grace and devotion.",
     parents: {
-      father: "Madhu T. S",
-      mother: "Reji Madhu",
+      father: "P R Sukumaran",
+      mother: "Preethy Sukumaran",
       houseName: "",
-      city: ""
+      city: "Onakkoor"
     },
-    siblingLabel: "Sister",
-    siblingsDisplay: "Athulya Madhu",
-    siblings: [
-      { name: "Athulya Madhu", relation: "Sister" }
-    ]
+    siblingLabel: "",
+    siblingsDisplay: "",
+    siblings: []
   },
   groom: {
-    name: "Abhijith V Nair",
-    shortName: "Abhijith",
+    name: "Mrinal",
+    shortName: "Mrinal",
     qualifications: "",
     image: null,
     bio: "Son of our esteemed family, blessed to begin this divine voyage of love, harmony, and togetherness.",
     parents: {
-      father: "Vinayachandran Nair",
-      mother: "Usha Vinayachandran",
+      father: "Muraleemohan K V",
+      mother: "Beena K V",
       houseName: "",
       city: ""
     },
-    siblingLabel: "Brother of",
-    siblingsDisplay: "Aswathy, Rajagopal S. K",
-    siblings: [
-      { name: "Aswathy", relation: "Sister" },
-      { name: "Rajagopal S. K", relation: "Brother" }
-    ]
+    siblingLabel: "",
+    siblingsDisplay: "",
+    siblings: []
   },
 
   // Wedding Muhurtham & Event Details
   event: {
     muhurthamLabel: "Wedding Ceremony",
-    dateDisplay: "Saturday, 12 December 2026",
-    timeDisplay: "11:15 AM - 11:59 AM",
-    muhurthamTimeWindow: "Muhurtham: 11:15 AM - 11:59 AM",
-    venueName: "St. George Parish Hall",
-    venueAddress: "Pallikavala, Kattappana",
-    city: "Idukki, Kerala – 685515",
-    googleMapsUrl: "https://maps.app.goo.gl/HjW5yW56Rpsv89Q59?utm_source=chatgpt.com",
-    googleCalendarTitle: "Wedding of Arunima & Abhijith",
-    googleCalendarDescription: "You are cordially invited with family to celebrate the wedding of Dr. Arunima Madhu & Abhijith V Nair at St. George Parish Hall, Kattappana, Idukki, Kerala.",
+    dateDisplay: "Sunday, 13 December 2026",
+    timeDisplay: "11:30 AM – 12:30 PM",
+    muhurthamTimeWindow: "Muhurtham: 11:30 AM – 12:30 PM",
+    venueName: "St Mary's Malankara Catholic Church Auditorium (Bethany Pally)",
+    venueAddress: "Onakkoor",
+    city: "Kerala",
+    googleMapsUrl: "https://share.google/X7JdglsH0ByI6KfTz?utm_source=chatgpt.com",
+    googleCalendarTitle: "Wedding of Archana & Mrinal",
+    googleCalendarDescription: "You are cordially invited with family to celebrate the wedding of Archana & Mrinal at St Mary's Malankara Catholic Church Auditorium (Bethany Pally), Onakkoor, Kerala.",
     // Target ISO date for the live countdown timer (YYYY-MM-DDTHH:mm:ss)
-    targetCountdownDate: "2026-12-12T11:15:00"
+    targetCountdownDate: "2026-12-13T11:30:00"
   },
 
   // RSVP Details (Accept & Decline Scenarios)
   rsvp: {
     whatsappNumber: "919778137459",
-    acceptMessage: "Hello Arunima & Abhijith, we are delighted to attend your wedding celebration!🎉🤍",
-    declineMessage: "Hello Arunima & Abhijith, we won't be able to attend your wedding celebration, but our heartfelt blessings and warm wishes are with you both!🤍✨"
+    acceptMessage: "Hello Archana & Mrinal, we are delighted to attend your wedding celebration!🎉🤍",
+    declineMessage: "Hello Archana & Mrinal, we won't be able to attend your wedding celebration, but our heartfelt blessings and warm wishes are with you both!🤍✨"
   },
 
   // Sacred Ceremonies Timeline
@@ -78,7 +73,7 @@ export const weddingData = {
     {
       id: "ceremony-2",
       englishTitle: "Wedding Ceremony (Muhurtham)",
-      time: "11:15 AM - 11:59 AM",
+      time: "11:30 AM – 12:30 PM",
       description: "Sacred wedding ceremony, exchanging of garlands and marital vows in the presence of loved ones.",
       icon: "lamp"
     },
@@ -86,7 +81,7 @@ export const weddingData = {
       id: "ceremony-3",
       englishTitle: "Traditional Wedding Feast",
       time: "01:00 PM onwards",
-      description: "Delicious grand traditional feast served to celebrate the joyful union of Arunima & Abhijith.",
+      description: "Delicious grand traditional feast served to celebrate the joyful union of Archana & Mrinal.",
       icon: "leaf"
     }
   ],
@@ -95,12 +90,12 @@ export const weddingData = {
   galleryImages: [
     {
       src: "/assets/couple.jpg",
-      alt: "Dr. Arunima Madhu & Abhijith V Nair",
+      alt: "Archana & Mrinal",
       caption: "A journey of eternal companionship"
     },
     {
       src: "/assets/bride.jpg",
-      alt: "Radiant Bride Dr. Arunima Madhu",
+      alt: "Radiant Bride Archana",
       caption: "Radiant bride adorned in traditional Kerala Kasavu"
     },
     {

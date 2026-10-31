@@ -10,8 +10,8 @@ import { weddingData } from '../data/wedding-data.js';
 export function renderGettingMarriedSection() {
   const { bride, groom } = weddingData;
 
-  const brideDisplay = bride.shortName || 'Dr. Arunima';
-  const groomDisplay = groom.shortName || 'Abhijith';
+  const brideDisplay = bride.shortName || bride.name;
+  const groomDisplay = groom.shortName || groom.name;
 
   return `
     <section class="getting-married-section" id="getting-married">
