@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 32" fill="none">
+  <defs>
+    <linearGradient id="divGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A059" stop-opacity="0" />
+      <stop offset="25%" stop-color="#C5A059" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#8C6D32" stop-opacity="1" />
+      <stop offset="75%" stop-color="#C5A059" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#C5A059" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <!-- Thin hairline left -->
+  <line x1="20" y1="16" x2="120" y2="16" stroke="url(#divGold)" stroke-width="1" />
+  
+  <!-- Left tiny diamond dots -->
+  <circle cx="126" cy="16" r="1.5" fill="#8C6D32" />
+  <circle cx="134" cy="16" r="2" fill="#8C6D32" />
+  
+  <!-- Central traditional motif: Kerala lotus blossom with flanking swirls -->
+  <!-- Left swirl -->
+  <path d="M142,16 C147,11 151,13 151,16 C151,18 148,19 146,18" stroke="#8C6D32" stroke-width="1.2" fill="none" stroke-linecap="round" />
+  
+  <!-- Center flower petal cluster -->
+  <path d="M160,8 C163,12 163,18 160,24 C157,18 157,12 160,8 Z" fill="#8C6D32" />
+  <path d="M160,16 C155,12 152,14 153,19 C155,22 158,20 160,16 Z" fill="#C5A059" opacity="0.9" />
+  <path d="M160,16 C165,12 168,14 167,19 C165,22 162,20 160,16 Z" fill="#C5A059" opacity="0.9" />
+  <circle cx="160" cy="16" r="2.5" fill="#FFE27A" stroke="#8C6D32" stroke-width="0.8" />
+  
+  <!-- Right swirl -->
+  <path d="M178,16 C173,11 169,13 169,16 C169,18 172,19 174,18" stroke="#8C6D32" stroke-width="1.2" fill="none" stroke-linecap="round" />
+
+  <!-- Right tiny diamond dots -->
+  <circle cx="186" cy="16" r="2" fill="#8C6D32" />
+  <circle cx="194" cy="16" r="1.5" fill="#8C6D32" />
+  
+  <!-- Thin hairline right -->
+  <line x1="200" y1="16" x2="300" y2="16" stroke="url(#divGold)" stroke-width="1" />
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 260" fill="none" stroke="currentColor">
+  <!-- Flame with subtle gradient glow -->
+  <defs>
+    <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF3C4" stop-opacity="1" />
+      <stop offset="40%" stop-color="#E5A93C" stop-opacity="0.8" />
+      <stop offset="80%" stop-color="#C56A1B" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#C56A1B" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C7736" />
+      <stop offset="25%" stop-color="#D4AF37" />
+      <stop offset="50%" stop-color="#F3E5AB" />
+      <stop offset="75%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#846226" />
+    </linearGradient>
+  </defs>
+
+  <!-- Flame Halo Glow -->
+  <circle cx="60" cy="28" r="22" fill="url(#flameGlow)" class="lamp-flame-halo" />
+
+  <!-- The Sacred Flame -->
+  <path d="M60,10 C62,20 68,26 65,34 C63,39 57,39 55,34 C52,26 58,20 60,10 Z" fill="#FFE27A" class="lamp-flame-core" />
+  <path d="M60,16 C61,22 64,26 62,31 C61,33 59,33 58,31 C56,26 59,22 60,16 Z" fill="#FFFFFF" opacity="0.9" />
+
+  <!-- Nilavilakku Top Pinnacle / Makudam -->
+  <path d="M58,38 L62,38 L63,44 L57,44 Z" fill="url(#brassGrad)" />
+  <circle cx="60" cy="48" r="4.5" fill="url(#brassGrad)" />
+  
+  <!-- Upper Oil Cup (Thattu) -->
+  <path d="M42,56 C42,56 46,62 60,62 C74,62 78,56 78,56 C78,56 75,67 60,67 C45,67 42,56 42,56 Z" fill="url(#brassGrad)" />
+  <!-- Spouts for wicks -->
+  <circle cx="44" cy="57" r="1.5" fill="#846226" />
+  <circle cx="76" cy="57" r="1.5" fill="#846226" />
+
+  <!-- Upper neck and ring details -->
+  <ellipse cx="60" cy="72" rx="6" ry="2.5" fill="url(#brassGrad)" />
+  <rect x="57.5" y="73" width="5" height="14" rx="1.5" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="89" rx="8" ry="3" fill="url(#brassGrad)" />
+
+  <!-- Middle Decorative Section (Uruli/Bowl shape) -->
+  <path d="M30,102 C30,96 42,94 60,94 C78,94 90,96 90,102 C90,112 78,118 60,118 C42,118 30,112 30,102 Z" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="102" rx="30" ry="4.5" fill="#B38F48" opacity="0.6" stroke="#846226" stroke-width="0.75" />
+
+  <!-- Central Column (Thoonu) with traditional lathe-turned beadings -->
+  <rect x="56" y="118" width="8" height="12" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="132" rx="11" ry="4" fill="url(#brassGrad)" />
+  <rect x="55" y="134" width="10" height="24" rx="2" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="160" rx="14" ry="5" fill="url(#brassGrad)" />
+  <rect x="54" y="163" width="12" height="30" rx="2" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="195" rx="18" ry="6" fill="url(#brassGrad)" />
+
+  <!-- Stepped Circular Base (Aadhaaram) -->
+  <path d="M36,204 C36,198 46,196 60,196 C74,196 84,198 84,204 L88,220 C88,226 76,230 60,230 C44,230 32,226 32,220 Z" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="226" rx="34" ry="8" fill="url(#brassGrad)" stroke="#7A5A20" stroke-width="0.5" />
+  
+  <!-- Base Pedestal Rim -->
+  <path d="M22,234 C22,226 38,222 60,222 C82,222 98,226 98,234 L96,244 C96,252 80,256 60,256 C40,256 24,252 24,244 Z" fill="url(#brassGrad)" />
+  <ellipse cx="60" cy="234" rx="38" ry="7" fill="#846226" opacity="0.3" />
+  <ellipse cx="60" cy="246" rx="36" ry="6" fill="#F3E5AB" opacity="0.2" />
+</svg>
