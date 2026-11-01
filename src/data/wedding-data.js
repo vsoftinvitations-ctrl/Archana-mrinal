@@ -89,19 +89,19 @@ export const weddingData = {
   // Couple Photo Gallery
   galleryImages: [
     {
-      src: "/assets/couple.jpg",
+      src: "/assets/image.png",
       alt: "Archana & Mrinal",
       caption: "A journey of eternal companionship"
     },
     {
-      src: "/assets/bride.jpg",
-      alt: "Radiant Bride Archana",
-      caption: "Radiant bride adorned in traditional Kerala Kasavu"
+      src: "/assets/image2.jpg",
+      alt: "Archana & Mrinal Walking Together",
+      caption: "Walking hand in hand toward our forever"
     },
     {
-      src: "/assets/details.jpg",
-      alt: "Sacred traditional wedding offerings",
-      caption: "Sacred rituals & auspicious beginnings"
+      src: "/assets/image3.png",
+      alt: "Archana & Mrinal",
+      caption: "Bound by love, blessed by family"
     }
   ],
 
