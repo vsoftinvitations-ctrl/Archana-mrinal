@@ -66,7 +66,7 @@ export const weddingData = {
     {
       id: "ceremony-1",
       englishTitle: "Guest Welcome & Gathering",
-      time: "10:30 AM",
+      time: "11:00 AM",
       description: "Auspicious arrival of family and guests to celebrate the special occasion.",
       icon: "ring"
     },
@@ -80,7 +80,7 @@ export const weddingData = {
     {
       id: "ceremony-3",
       englishTitle: "Traditional Wedding Feast",
-      time: "01:00 PM onwards",
+      time: "12:30 PM onwards",
       description: "Delicious grand traditional feast served to celebrate the joyful union of Archana & Mrinal.",
       icon: "leaf"
     }

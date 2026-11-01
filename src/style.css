@@ -654,6 +654,14 @@ section {
   display: inline-block;
 }
 
+.getting-married-names-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .getting-married-bride,
 .getting-married-groom {
   font-family: var(--font-serif-en);
@@ -671,8 +679,10 @@ section {
   font-size: clamp(1.75rem, 2.6vw, 2.35rem);
   color: var(--gold-antique);
   line-height: 1;
-  margin: clamp(0.35rem, 0.8vw, 0.6rem) 0 clamp(0.45rem, 0.8vw, 0.75rem) 0.35rem;
-  display: inline-block;
+  margin: clamp(0.35rem, 0.8vw, 0.6rem) 0 clamp(0.45rem, 0.8vw, 0.75rem) 0;
+  display: block;
+  align-self: center;
+  text-align: center;
 }
 
 /* Responsive adjustments */

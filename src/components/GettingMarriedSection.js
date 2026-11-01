@@ -51,9 +51,11 @@ export function renderGettingMarriedSection() {
           <!-- Right: Text & Names -->
           <div class="getting-married-content">
             <span class="getting-married-subheading">WE ARE GETTING MARRIED</span>
-            <h2 class="getting-married-bride">${brideDisplay}</h2>
-            <span class="getting-married-ampersand">&amp;</span>
-            <h2 class="getting-married-groom">${groomDisplay}</h2>
+            <div class="getting-married-names-wrap">
+              <h2 class="getting-married-bride">${brideDisplay}</h2>
+              <span class="getting-married-ampersand">&amp;</span>
+              <h2 class="getting-married-groom">${groomDisplay}</h2>
+            </div>
           </div>
         </div>
       </div>
