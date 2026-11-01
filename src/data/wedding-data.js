@@ -15,7 +15,7 @@ export const weddingData = {
       father: "P R Sukumaran",
       mother: "Preethy Sukumaran",
       houseName: "",
-      city: "Onakkoor"
+      city: ""
     },
     siblingLabel: "",
     siblingsDisplay: "",
