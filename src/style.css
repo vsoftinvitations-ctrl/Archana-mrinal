@@ -529,8 +529,8 @@ section {
 /* Left: Couple Portrait Image / Crossfade Slider */
 .getting-married-media {
   flex: 1 1 52%;
-  min-height: 480px;
-  max-height: 540px;
+  min-height: 420px;
+  max-height: 490px;
   position: relative;
   overflow: hidden;
   background: #2D221E;
@@ -543,7 +543,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center 55%;
   display: block;
   opacity: 0;
   z-index: 1;
@@ -552,17 +552,17 @@ section {
   will-change: opacity;
 }
 
-/* Individual framing per slide so the couple's faces and attire are perfectly centered */
+/* Individual framing per slide so the couple is fully visible inside normal container height */
 .getting-married-slide[data-slide="0"] {
-  object-position: center 62%;
+  object-position: center 55%;
 }
 
 .getting-married-slide[data-slide="1"] {
-  object-position: center 66%;
+  object-position: center 60%;
 }
 
 .getting-married-slide[data-slide="2"] {
-  object-position: center 46%;
+  object-position: center 40%;
 }
 
 .getting-married-slide.active {
@@ -669,12 +669,12 @@ section {
 @media (max-width: 768px) {
   .getting-married-card {
     flex-direction: column;
-    max-width: 500px;
+    max-width: 480px;
   }
 
   .getting-married-media {
-    min-height: 380px;
-    max-height: 440px;
+    min-height: 320px;
+    max-height: 360px;
     width: 100%;
   }
 
@@ -690,20 +690,20 @@ section {
   }
 
   .getting-married-media {
-    min-height: 360px;
-    max-height: 420px;
+    min-height: 280px;
+    max-height: 320px;
   }
 
   .getting-married-slide[data-slide="0"] {
-    object-position: center 62%;
+    object-position: center 55%;
   }
 
   .getting-married-slide[data-slide="1"] {
-    object-position: center 66%;
+    object-position: center 60%;
   }
 
   .getting-married-slide[data-slide="2"] {
-    object-position: center 46%;
+    object-position: center 40%;
   }
 
   .getting-married-content {
