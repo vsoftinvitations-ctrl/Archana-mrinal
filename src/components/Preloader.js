@@ -34,10 +34,8 @@ export function renderPreloader() {
           <div class="preloader-gate-badge">
             <span class="preloader-tagline">WEDDING INVITATION</span>
           </div>
-          <button class="preloader-open-pill-btn ready-pulse" id="preloader-enter-btn" aria-label="Tap to Open Invitation">
-            <span class="btn-sparkle">✦</span>
+          <button class="preloader-open-pill-btn" id="preloader-enter-btn" aria-label="Tap to Open Invitation">
             <span>Tap to Open</span>
-            <span class="btn-sparkle">✦</span>
           </button>
         </div>
       </div>
