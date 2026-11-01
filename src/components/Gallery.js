@@ -1,33 +1,27 @@
 import { weddingData } from '../data/wedding-data.js';
 
+/**
+ * Scroll-Driven Frameless Story Gallery
+ * Pins in viewport while scrolling through story images, then continues to next section.
+ */
 export function renderGallery() {
   const { galleryImages } = weddingData;
   const storyImages = galleryImages.slice(0, 3);
 
-  const cardsHtml = storyImages
+  const slidesHtml = storyImages
     .map(
       (img, idx) => `
-      <div class="story-photo-card reveal-on-scroll" data-index="${idx}">
-        <div class="photo-card-inner">
-          <div class="photo-mat-frame">
-            <!-- 4 Delicate Gold Corner Photo Brackets -->
-            <span class="photo-corner corner-tl"></span>
-            <span class="photo-corner corner-tr"></span>
-            <span class="photo-corner corner-bl"></span>
-            <span class="photo-corner corner-br"></span>
-
-            <img src="${img.src}" alt="${img.alt}" loading="lazy" />
-
-            <div class="photo-hover-veil">
-              <button class="photo-zoom-btn" data-index="${idx}" aria-label="Enlarge photo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  <line x1="11" y1="8" x2="11" y2="14"></line>
-                  <line x1="8" y1="11" x2="14" y2="11"></line>
-                </svg>
-              </button>
-            </div>
+      <div class="story-frameless-slide ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+        <div class="story-img-container">
+          <img
+            src="${img.src}"
+            alt="${img.alt}"
+            loading="${idx === 0 ? 'eager' : 'lazy'}"
+            class="story-frameless-img"
+          />
+          <div class="story-img-overlay">
+            <span class="story-badge">Chapter 0${idx + 1}</span>
+            <p class="story-caption">${img.caption || ''}</p>
           </div>
         </div>
       </div>
@@ -35,158 +29,148 @@ export function renderGallery() {
     )
     .join('');
 
+  const dotsHtml = storyImages
+    .map(
+      (_, idx) => `
+      <button class="story-pill-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" aria-label="Story Slide ${idx + 1}"></button>
+    `
+    )
+    .join('');
+
   return `
-    <section id="photo-gallery" class="gallery-section">
-      <h2 class="gallery-section-title reveal-on-scroll">OUR STORY</h2>
-      <p class="gallery-subtitle reveal-on-scroll">Moments captured along our path to forever</p>
-      <div class="gallery-accent-line reveal-on-scroll"></div>
-
-      <!-- 3-Card Cluster matching reference image in both desktop and mobile -->
-      <div class="gallery-showcase-container reveal-on-scroll" id="wedding-gallery-showcase">
-        <div class="story-cards-cluster" id="gallery-row-track">
-          ${cardsHtml}
+    <section id="photo-gallery" class="story-scroll-section">
+      <!-- Sticky stage pinned during scroll -->
+      <div class="story-sticky-stage" id="story-sticky-stage">
+        
+        <!-- Header -->
+        <div class="story-stage-header">
+          <h2 class="gallery-section-title">OUR STORY</h2>
+          <p class="gallery-subtitle">Moments captured along our path to forever</p>
+          <div class="section-divider" style="margin-top: 0.4rem; margin-bottom: 1.25rem;">
+            <img src="/assets/kerala-divider.svg" alt="Kerala Divider" width="220" height="22" />
+          </div>
         </div>
-      </div>
 
-      <!-- Lightbox Modal -->
-      <div class="lightbox-modal" id="gallery-lightbox" aria-hidden="true" role="dialog">
-        <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
-        <button class="lightbox-nav-btn lightbox-prev-btn" id="lightbox-prev" aria-label="Previous Photo">&#10094;</button>
-        <button class="lightbox-nav-btn lightbox-next-btn" id="lightbox-next" aria-label="Next Photo">&#10095;</button>
-        <div class="lightbox-content">
-          <span class="lightbox-badge" id="lightbox-badge"></span>
-          <img id="lightbox-img" src="" alt="Enlarged photo" />
-          <div class="lightbox-caption" id="lightbox-caption"></div>
+        <!-- Frameless Slide Stage (Images Move as you scroll) -->
+        <div class="story-frameless-stage" id="story-frameless-stage">
+          ${slidesHtml}
         </div>
+
+        <!-- Bottom Progress Controls & Counter -->
+        <div class="story-stage-footer">
+          <div class="story-step-pills">
+            ${dotsHtml}
+          </div>
+          <span class="story-step-counter" id="story-step-counter">01 / 0${storyImages.length}</span>
+        </div>
+
       </div>
     </section>
   `;
 }
 
 export function initGalleryCarousel() {
-  const container = document.getElementById('wedding-gallery-showcase');
-  if (!container) return;
+  const section = document.getElementById('photo-gallery');
+  if (!section) return;
 
-  const track = document.getElementById('gallery-row-track');
-  const cards = track ? track.querySelectorAll('.story-photo-card') : [];
-  const dots = container.querySelectorAll('.gallery-dot');
-  const revealBtn = document.getElementById('open-interactive-gallery');
+  const slides = section.querySelectorAll('.story-frameless-slide');
+  const dots = section.querySelectorAll('.story-pill-dot');
+  const counter = document.getElementById('story-step-counter');
+  const totalSlides = slides.length;
+  if (totalSlides < 2) return;
 
-  // Lightbox elements
-  const modal = document.getElementById('gallery-lightbox');
-  const modalImg = document.getElementById('lightbox-img');
-  const modalCaption = document.getElementById('lightbox-caption');
-  const modalBadge = document.getElementById('lightbox-badge');
-  const closeBtn = document.getElementById('lightbox-close');
-  const prevBtn = document.getElementById('lightbox-prev');
-  const nextBtn = document.getElementById('lightbox-next');
+  let currentActiveIndex = 0;
 
-  let activeLightboxIndex = 0;
-  const totalImages = weddingData.galleryImages.length;
+  function setActiveSlide(index) {
+    if (index === currentActiveIndex) return;
+    currentActiveIndex = index;
 
-  function updateLightbox(idx) {
-    if (idx < 0) idx = totalImages - 1;
-    if (idx >= totalImages) idx = 0;
-    activeLightboxIndex = idx;
-
-    const item = weddingData.galleryImages[activeLightboxIndex];
-    if (!item) return;
-
-    modalImg.src = item.src;
-    modalImg.alt = item.alt;
-    if (modalCaption) modalCaption.textContent = item.caption || '';
-    if (modalBadge) modalBadge.textContent = '';
-  }
-
-  function openLightbox(idx) {
-    updateLightbox(idx);
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  // Bind clicks to open lightbox
-  cards.forEach((card, idx) => {
-    card.addEventListener('click', () => {
-      openLightbox(idx);
+    slides.forEach((slide, idx) => {
+      slide.classList.remove('active', 'prev', 'next');
+      if (idx === index) {
+        slide.classList.add('active');
+      } else if (idx < index) {
+        slide.classList.add('prev');
+      } else {
+        slide.classList.add('next');
+      }
     });
-  });
 
-  if (revealBtn) {
-    revealBtn.addEventListener('click', () => {
-      openLightbox(0);
-    });
-  }
-
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      updateLightbox(activeLightboxIndex - 1);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      updateLightbox(activeLightboxIndex + 1);
-    });
-  }
-
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeLightbox();
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (!modal || !modal.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') updateLightbox(activeLightboxIndex - 1);
-    if (e.key === 'ArrowRight') updateLightbox(activeLightboxIndex + 1);
-  });
-
-  // Mobile horizontal scroll tracking for dots
-  if (track && dots.length > 0) {
     dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        const targetCard = cards[idx];
-        if (targetCard) {
-          targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-      });
+      dot.classList.toggle('active', idx === index);
     });
 
-    let scrollTimeout = null;
-    track.addEventListener('scroll', () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const trackRect = track.getBoundingClientRect();
-        const trackCenter = trackRect.left + trackRect.width / 2;
-        let closestIdx = 0;
-        let closestDistance = Infinity;
+    if (counter) {
+      counter.textContent = `0${index + 1} / 0${totalSlides}`;
+    }
+  }
 
-        cards.forEach((card, idx) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const dist = Math.abs(cardCenter - trackCenter);
-          if (dist < closestDistance) {
-            closestDistance = dist;
-            closestIdx = idx;
-          }
-        });
+  // Scroll-driven calculation: moves images as user scrolls through the section
+  function handleScroll() {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const totalScrollable = rect.height - windowHeight;
 
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('active', idx === closestIdx);
-        });
-      }, 50);
+    if (totalScrollable <= 0) return;
+
+    // How far through the section the user has scrolled (0 to 1)
+    const scrollProgress = -rect.top / totalScrollable;
+    const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+
+    // Determine target slide index
+    const targetIndex = Math.min(
+      Math.floor(clampedProgress * totalSlides),
+      totalSlides - 1
+    );
+
+    setActiveSlide(targetIndex);
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Initial check
+
+  // Touch swipe support on the frameless stage
+  const stage = section.querySelector('#story-frameless-stage');
+  if (stage) {
+    let startX = 0;
+    let startY = 0;
+    stage.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].clientX - startX;
+      const diffY = e.changedTouches[0].clientY - startY;
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        let newIndex = currentActiveIndex;
+        if (diffX < 0 && currentActiveIndex < totalSlides - 1) {
+          newIndex = currentActiveIndex + 1;
+        } else if (diffX > 0 && currentActiveIndex > 0) {
+          newIndex = currentActiveIndex - 1;
+        }
+        if (newIndex !== currentActiveIndex) {
+          const rect = section.getBoundingClientRect();
+          const totalScrollable = rect.height - window.innerHeight;
+          const targetScrollY = window.scrollY + rect.top + (newIndex / (totalSlides - 1)) * totalScrollable;
+          window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+        }
+      }
     }, { passive: true });
   }
+
+  // Also support tapping the indicator pills to smoothly transition to that moment
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+      if (!isNaN(targetIndex)) {
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const totalScrollable = rect.height - windowHeight;
+        const targetScrollY = window.scrollY + rect.top + (targetIndex / (totalSlides - 1)) * totalScrollable;
+        window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+      }
+    });
+  });
 }
