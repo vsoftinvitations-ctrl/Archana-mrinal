@@ -936,12 +936,13 @@ section {
 }
 
 .details-muhurtham-label {
-  font-family: var(--font-serif-ml);
-  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
-  font-weight: 600;
+  font-family: 'Brittany Signature', var(--font-script), cursive;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
   color: var(--gold-deep);
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
+  letter-spacing: normal;
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
 }
 
 .details-grid {
