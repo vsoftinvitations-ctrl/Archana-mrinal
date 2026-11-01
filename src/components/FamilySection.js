@@ -14,7 +14,7 @@ export function renderFamilySection() {
 
       <div class="family-grid">
         <!-- Bride's Family -->
-        <div class="kasavu-card family-card reveal-on-scroll reveal-delay-1">
+        <div class="kasavu-card family-card family-card-bride reveal-on-scroll">
           <div class="family-role-badge">Bride's Family</div>
           <div class="family-parent-names">
             Sri. ${bride.parents.father}
@@ -31,7 +31,7 @@ export function renderFamilySection() {
         </div>
 
         <!-- Groom's Family -->
-        <div class="kasavu-card family-card reveal-on-scroll reveal-delay-2">
+        <div class="kasavu-card family-card family-card-groom reveal-on-scroll">
           <div class="family-role-badge">Groom's Family</div>
           <div class="family-parent-names">
             Sri. ${groom.parents.father}

@@ -1179,6 +1179,11 @@ section {
 /* ==========================================================================
    6. SECTION 6 — FAMILY INVITATION
    ========================================================================== */
+.family-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .family-section-title {
   font-family: var(--font-serif-en);
   font-size: clamp(1.4rem, 3.5vw, 2rem);
@@ -1194,6 +1199,7 @@ section {
   gap: 2rem;
   max-width: 860px;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 @media (min-width: 768px) {
@@ -1203,12 +1209,119 @@ section {
 }
 
 .family-card {
+  position: relative;
+  overflow: hidden;
   padding: 2.25rem 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.family-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(122, 28, 46, 0.12), 0 4px 16px rgba(184, 155, 94, 0.15);
+  border-color: var(--gold-deep);
+}
+
+/* Coming-in Entrance Animations */
+/* Desktop: Bride Card glides smoothly in from Left */
+@media (min-width: 768px) {
+  .family-card-bride.reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(-60px, 0, 0) scale(0.94);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .family-card-bride.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  /* Desktop: Groom Card glides smoothly in from Right */
+  .family-card-groom.reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(60px, 0, 0) scale(0.94);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+  }
+
+  .family-card-groom.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Mobile: Cards float up smoothly with elegant staggered elevation */
+@media (max-width: 767px) {
+  .family-card-bride.reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(0, 45px, 0) scale(0.94);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .family-card-bride.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .family-card-groom.reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(0, 45px, 0) scale(0.94);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  }
+
+  .family-card-groom.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Gold Shimmer Sheen sweep when cards arrive */
+.family-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 80%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.family-card.revealed::after {
+  animation: familySheen 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+}
+
+@keyframes familySheen {
+  0% {
+    left: -120%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    left: 200%;
+    opacity: 0;
+  }
 }
 
 .family-role-badge {
