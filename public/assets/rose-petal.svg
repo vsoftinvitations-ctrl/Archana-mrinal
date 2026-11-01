@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
   <defs>
     <radialGradient id="petalGrad" cx="40%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#EAA19C" stop-opacity="0.95" />
-      <stop offset="55%" stop-color="#D97572" stop-opacity="0.92" />
-      <stop offset="100%" stop-color="#BA4E50" stop-opacity="0.88" />
+      <stop offset="0%" stop-color="#F32944" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#BC0F26" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#7A0918" stop-opacity="0.92" />
     </radialGradient>
     <linearGradient id="petalSheen" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3" />

@@ -41,9 +41,9 @@ export function initRosePetals() {
       this.time = Math.random() * 1000;
       this.flip = Math.random() * Math.PI;
       this.flipSpeed = 0.01 + Math.random() * 0.015;
-      // Soft rose tones
-      this.opacity = 0.55 + Math.random() * 0.25;
-      this.hue = 354 + (Math.random() * 6 - 3); // Soft Kerala rose pink
+      // Vibrant red rose tones
+      this.opacity = 0.72 + Math.random() * 0.22;
+      this.hue = 352 + (Math.random() * 6 - 3); // Pure velvety red
     }
 
     update() {
@@ -70,10 +70,10 @@ export function initRosePetals() {
       const w = this.size * 0.75;
       const h = this.size;
 
-      const grad = ctx.createRadialGradient(0, -h * 0.1, h * 0.1, 0, 0, h);
-      grad.addColorStop(0, `hsla(${this.hue}, 70%, 82%, ${this.opacity})`);
-      grad.addColorStop(0.6, `hsla(${this.hue}, 65%, 65%, ${this.opacity * 0.95})`);
-      grad.addColorStop(1, `hsla(${this.hue}, 55%, 48%, ${this.opacity * 0.9})`);
+      const grad = ctx.createRadialGradient(0, -h * 0.15, h * 0.08, 0, 0, h);
+      grad.addColorStop(0, `hsla(${this.hue}, 92%, 56%, ${this.opacity})`);
+      grad.addColorStop(0.55, `hsla(${this.hue}, 88%, 38%, ${this.opacity * 0.98})`);
+      grad.addColorStop(1, `hsla(${this.hue}, 85%, 24%, ${this.opacity * 0.95})`);
 
       ctx.fillStyle = grad;
       ctx.beginPath();
@@ -83,8 +83,8 @@ export function initRosePetals() {
       ctx.bezierCurveTo(w * 1.1, -h * 0.4, w * 1.2, h * 0.3, 0, h * 0.5);
       ctx.fill();
 
-      // Subtle delicate center highlight
-      ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.28})`;
+      // Delicate center highlight vein
+      ctx.strokeStyle = `rgba(255, 180, 190, ${this.opacity * 0.35})`;
       ctx.lineWidth = 0.75;
       ctx.beginPath();
       ctx.moveTo(0, h * 0.3);
