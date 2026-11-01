@@ -11,7 +11,7 @@ export function renderCoupleSection() {
 
       <div class="couple-cards-container">
         <!-- Bride Card -->
-        <div class="kasavu-card couple-card reveal-on-scroll reveal-delay-1">
+        <div class="kasavu-card couple-card couple-card-bride reveal-on-scroll">
           <div class="couple-card-badge">The Bride</div>
           <h3 class="couple-name-title">${bride.name}</h3>
           <div class="couple-card-divider"></div>
@@ -23,7 +23,7 @@ export function renderCoupleSection() {
         </div>
 
         <!-- Groom Card -->
-        <div class="kasavu-card couple-card reveal-on-scroll reveal-delay-2">
+        <div class="kasavu-card couple-card couple-card-groom reveal-on-scroll">
           <div class="couple-card-badge">The Groom</div>
           <h3 class="couple-name-title">${groom.name}</h3>
           <div class="couple-card-divider"></div>

@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup smooth scroll-reveal animations via IntersectionObserver
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -40px 0px',
-    threshold: 0.12
+    rootMargin: '0px 0px -15px 0px',
+    threshold: 0.05
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
