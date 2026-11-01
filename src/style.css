@@ -1698,23 +1698,23 @@ section {
 }
 
 /* ==========================================================================
-   9. SECTION 9 — LOCATION & DIRECTIONS
+   9. SECTION 9 — LOCATION & DIRECTIONS (Compact Size)
    ========================================================================== */
 .location-section {
   text-align: center;
-  padding: clamp(3.5rem, 6vw, 6rem) clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 2.5vw, 2rem);
 }
 
 .location-card {
-  max-width: 940px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 0;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   text-align: center;
   background: #FFFFFF;
   border: 1px solid rgba(184, 155, 94, 0.25);
-  box-shadow: 0 16px 45px rgba(61, 42, 27, 0.08);
+  box-shadow: 0 12px 35px rgba(61, 42, 27, 0.07);
 }
 
 .location-card::before {
@@ -1728,9 +1728,9 @@ section {
 }
 
 .location-media-col {
-  flex: 1 1 48%;
-  min-height: 400px;
-  max-height: 480px;
+  flex: 1 1 46%;
+  min-height: 290px;
+  max-height: 350px;
   position: relative;
   overflow: hidden;
   background: #EDE8DE;
@@ -1750,19 +1750,19 @@ section {
 }
 
 .location-details-col {
-  flex: 1 1 52%;
+  flex: 1 1 54%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.5rem, 2.8vw, 2.2rem);
   text-align: center;
   background: #FFFFFF;
 }
 
 .location-title-en {
   font-family: var(--font-serif-en);
-  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
   font-weight: 600;
   color: var(--earth-brown);
   line-height: 1.3;
@@ -1770,9 +1770,9 @@ section {
 }
 
 .location-icon-wrapper {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 1.25rem;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 0.75rem;
   border-radius: 50%;
   background: var(--bg-ivory-light);
   border: 1.5px solid var(--gold-antique);
@@ -1780,32 +1780,42 @@ section {
   align-items: center;
   justify-content: center;
   color: var(--gold-deep);
-  box-shadow: 0 4px 12px rgba(184, 155, 94, 0.15);
+  box-shadow: 0 3px 10px rgba(184, 155, 94, 0.15);
+}
+
+.location-icon-wrapper svg {
+  width: 18px;
+  height: 18px;
 }
 
 .location-venue-name {
   font-family: var(--font-serif-en);
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
   font-weight: 600;
   color: var(--gold-deep);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .location-venue-detail {
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   color: var(--earth-brown-light);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.location-details-col .btn-primary-gold {
+  padding: 8px 22px;
+  font-size: 0.84rem;
 }
 
 @media (max-width: 768px) {
   .location-section {
-    padding: 2.2rem 1rem;
+    padding: 1.75rem 0.85rem;
   }
 
   .location-card {
-    max-width: 460px;
-    border-radius: 14px;
+    max-width: 420px;
+    border-radius: 12px;
   }
 
   .location-card-grid {
@@ -1813,9 +1823,9 @@ section {
   }
 
   .location-media-col {
-    height: clamp(220px, 56vw, 280px);
-    min-height: 210px;
-    max-height: 290px;
+    height: 195px;
+    min-height: 185px;
+    max-height: 215px;
     width: 100%;
   }
 
@@ -1824,60 +1834,64 @@ section {
   }
 
   .location-details-col {
-    padding: 1.6rem 1.25rem 1.85rem;
+    padding: 1.25rem 1rem 1.45rem;
   }
 
   .location-icon-wrapper {
-    width: 38px;
-    height: 38px;
-    margin: 0 auto 0.65rem;
+    width: 34px;
+    height: 34px;
+    margin: 0 auto 0.5rem;
   }
 
   .location-icon-wrapper svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .location-title-en {
-    font-size: 1.22rem;
-  }
-
-  .location-details-col .section-divider {
-    margin-top: 0.4rem !important;
-    margin-bottom: 0.85rem !important;
-  }
-
-  .location-details-col .section-divider img {
-    width: 160px;
+    width: 16px;
     height: 16px;
   }
 
+  .location-title-en {
+    font-size: 1.1rem;
+  }
+
+  .location-details-col .section-divider {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .location-details-col .section-divider img {
+    width: 140px;
+    height: 14px;
+  }
+
   .location-venue-name {
-    font-size: 1.22rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.12rem;
+    margin-bottom: 0.25rem;
   }
 
   .location-venue-detail {
-    font-size: 0.88rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
   }
 
   .location-details-col .btn-primary-gold {
-    padding: 9px 22px;
-    font-size: 0.84rem;
+    padding: 8px 18px;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .location-section {
-    padding: 1.75rem 0.85rem;
+    padding: 1.35rem 0.75rem;
+  }
+
+  .location-card {
+    max-width: 360px;
   }
 
   .location-media-col {
-    height: clamp(200px, 55vw, 250px);
-    min-height: 195px;
-    max-height: 260px;
+    height: 165px;
+    min-height: 155px;
+    max-height: 180px;
   }
 
   .location-venue-img {
@@ -1885,20 +1899,25 @@ section {
   }
 
   .location-details-col {
-    padding: 1.35rem 1rem 1.6rem;
+    padding: 1.1rem 0.85rem 1.3rem;
   }
 
   .location-title-en {
-    font-size: 1.12rem;
+    font-size: 1.02rem;
   }
 
   .location-venue-name {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
 
   .location-venue-detail {
-    font-size: 0.82rem;
-    margin-bottom: 1.1rem;
+    font-size: 0.78rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .location-details-col .btn-primary-gold {
+    padding: 7px 16px;
+    font-size: 0.78rem;
   }
 }
 

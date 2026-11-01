@@ -27,8 +27,8 @@ export function renderLocationSection() {
             </div>
 
             <h2 class="location-title-en">${texts.locationHeading || 'Join Us to Celebrate Our Wedding'}</h2>
-            <div class="section-divider" style="margin-top: 0.75rem; margin-bottom: 1.5rem;">
-              <img src="/assets/kerala-divider.svg" alt="Kerala Divider" width="220" height="22" />
+            <div class="section-divider" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+              <img src="/assets/kerala-divider.svg" alt="Kerala Divider" width="160" height="16" />
             </div>
 
             <div class="location-venue-name">${event.venueName}</div>
