@@ -238,7 +238,7 @@ section {
   min-height: 100vh;
   min-height: 100dvh;
   background-color: #FAF5EE;
-  background-image: linear-gradient(180deg, rgba(253, 251, 247, 0.76) 0%, rgba(250, 245, 238, 0.68) 50%, rgba(245, 236, 224, 0.82) 100%), url('/assets/opening-bg.jpg');
+  background-image: linear-gradient(180deg, rgba(253, 251, 247, 0.38) 0%, rgba(250, 245, 238, 0.28) 50%, rgba(245, 236, 224, 0.44) 100%), url('/assets/opening-bg.jpg');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
