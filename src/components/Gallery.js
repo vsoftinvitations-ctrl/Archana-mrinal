@@ -2,7 +2,8 @@ import { weddingData } from '../data/wedding-data.js';
 
 /**
  * Scroll-Driven Frameless Story Gallery
- * Pins in viewport while scrolling through story images, then continues to next section.
+ * Pins in viewport while scrolling smoothly through story images with resting zones,
+ * then seamlessly continues to the next sections.
  */
 export function renderGallery() {
   const { galleryImages } = weddingData;
@@ -11,7 +12,7 @@ export function renderGallery() {
   const slidesHtml = storyImages
     .map(
       (img, idx) => `
-      <div class="story-frameless-slide ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+      <div class="story-frameless-slide" data-index="${idx}">
         <div class="story-img-container">
           <img
             src="${img.src}"
@@ -51,7 +52,7 @@ export function renderGallery() {
           </div>
         </div>
 
-        <!-- Frameless Slide Stage (Images Move as you scroll) -->
+        <!-- Frameless Slide Stage (Images Move smoothly as you scroll) -->
         <div class="story-frameless-stage" id="story-frameless-stage">
           ${slidesHtml}
         </div>
@@ -73,39 +74,84 @@ export function initGalleryCarousel() {
   const section = document.getElementById('photo-gallery');
   if (!section) return;
 
-  const slides = section.querySelectorAll('.story-frameless-slide');
-  const dots = section.querySelectorAll('.story-pill-dot');
+  const slides = Array.from(section.querySelectorAll('.story-frameless-slide'));
+  const dots = Array.from(section.querySelectorAll('.story-pill-dot'));
   const counter = document.getElementById('story-step-counter');
   const totalSlides = slides.length;
   if (totalSlides < 2) return;
 
-  let currentActiveIndex = 0;
+  // Calculates smooth virtual progress (0 to totalSlides - 1) with generous resting zones
+  function calculateVirtualProgress(P) {
+    if (P <= 0.22) {
+      return 0; // Slide 1 resting zone
+    }
+    if (P < 0.44) {
+      // Gentle, smooth cubic transition from Slide 1 to 2
+      const t = (P - 0.22) / 0.22;
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      return eased;
+    }
+    if (P <= 0.66) {
+      return 1; // Slide 2 resting zone
+    }
+    if (P < 0.88) {
+      // Gentle, smooth cubic transition from Slide 2 to 3
+      const t = (P - 0.66) / 0.22;
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      return 1 + eased;
+    }
+    return 2; // Slide 3 resting zone
+  }
 
-  function setActiveSlide(index) {
-    if (index === currentActiveIndex) return;
-    currentActiveIndex = index;
+  let currentV = 0;
+  let targetV = 0;
+  let isAnimating = false;
+  let lastActiveIndex = 0;
+
+  function renderFrame() {
+    // Smooth damped interpolation (lerp) for silky cinematic motion
+    currentV += (targetV - currentV) * 0.12;
+    if (Math.abs(targetV - currentV) < 0.001) {
+      currentV = targetV;
+    }
 
     slides.forEach((slide, idx) => {
-      slide.classList.remove('active', 'prev', 'next');
-      if (idx === index) {
-        slide.classList.add('active');
-      } else if (idx < index) {
-        slide.classList.add('prev');
-      } else {
-        slide.classList.add('next');
+      const diff = idx - currentV;
+      const translateX = diff * 65; // percentage offset
+      const scale = Math.max(0.88, 1 - Math.abs(diff) * 0.08);
+      const opacity = Math.max(0, Math.min(1, 1 - Math.abs(diff) * 1.35));
+
+      slide.style.transform = `translate3d(${translateX}%, 0, 0) scale(${scale})`;
+      slide.style.opacity = opacity.toFixed(3);
+      slide.style.pointerEvents = Math.abs(diff) < 0.3 ? 'auto' : 'none';
+      slide.style.zIndex = Math.abs(diff) < 0.5 ? '3' : '1';
+    });
+
+    const activeIdx = Math.max(0, Math.min(totalSlides - 1, Math.round(currentV)));
+    if (activeIdx !== lastActiveIndex) {
+      lastActiveIndex = activeIdx;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeIdx);
+      });
+      if (counter) {
+        counter.textContent = `0${activeIdx + 1} / 0${totalSlides}`;
       }
-    });
+    }
 
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === index);
-    });
-
-    if (counter) {
-      counter.textContent = `0${index + 1} / 0${totalSlides}`;
+    if (currentV !== targetV) {
+      requestAnimationFrame(renderFrame);
+    } else {
+      isAnimating = false;
     }
   }
 
-  // Scroll-driven calculation: moves images as user scrolls through the section
+  function startAnimation() {
+    if (!isAnimating) {
+      isAnimating = true;
+      requestAnimationFrame(renderFrame);
+    }
+  }
+
   function handleScroll() {
     const rect = section.getBoundingClientRect();
     const windowHeight = window.innerHeight;
@@ -113,23 +159,27 @@ export function initGalleryCarousel() {
 
     if (totalScrollable <= 0) return;
 
-    // How far through the section the user has scrolled (0 to 1)
     const scrollProgress = -rect.top / totalScrollable;
     const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
 
-    // Determine target slide index
-    const targetIndex = Math.min(
-      Math.floor(clampedProgress * totalSlides),
-      totalSlides - 1
-    );
-
-    setActiveSlide(targetIndex);
+    targetV = calculateVirtualProgress(clampedProgress);
+    startAnimation();
   }
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // Initial check
+  // Initial frame
+  handleScroll();
 
-  // Touch swipe support on the frameless stage
+  // Helper to scroll smoothly to a specific slide resting zone
+  function scrollToSlide(targetIndex) {
+    const rect = section.getBoundingClientRect();
+    const totalScrollable = rect.height - window.innerHeight;
+    const targetP = targetIndex === 0 ? 0.11 : targetIndex === 1 ? 0.55 : 0.89;
+    const targetScrollY = window.scrollY + rect.top + targetP * totalScrollable;
+    window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+  }
+
+  // Touch swipe support on frameless stage
   const stage = section.querySelector('#story-frameless-stage');
   if (stage) {
     let startX = 0;
@@ -143,33 +193,22 @@ export function initGalleryCarousel() {
       const diffX = e.changedTouches[0].clientX - startX;
       const diffY = e.changedTouches[0].clientY - startY;
       if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-        let newIndex = currentActiveIndex;
-        if (diffX < 0 && currentActiveIndex < totalSlides - 1) {
-          newIndex = currentActiveIndex + 1;
-        } else if (diffX > 0 && currentActiveIndex > 0) {
-          newIndex = currentActiveIndex - 1;
-        }
-        if (newIndex !== currentActiveIndex) {
-          const rect = section.getBoundingClientRect();
-          const totalScrollable = rect.height - window.innerHeight;
-          const targetScrollY = window.scrollY + rect.top + (newIndex / (totalSlides - 1)) * totalScrollable;
-          window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+        if (diffX < 0 && lastActiveIndex < totalSlides - 1) {
+          scrollToSlide(lastActiveIndex + 1);
+        } else if (diffX > 0 && lastActiveIndex > 0) {
+          scrollToSlide(lastActiveIndex - 1);
         }
       }
     }, { passive: true });
   }
 
-  // Also support tapping the indicator pills to smoothly transition to that moment
+  // Tap dots to transition smoothly
   dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
       e.stopPropagation();
       const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
       if (!isNaN(targetIndex)) {
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const totalScrollable = rect.height - windowHeight;
-        const targetScrollY = window.scrollY + rect.top + (targetIndex / (totalSlides - 1)) * totalScrollable;
-        window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+        scrollToSlide(targetIndex);
       }
     });
   });

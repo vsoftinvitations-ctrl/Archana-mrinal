@@ -1275,16 +1275,56 @@ section {
 
 .countdown-card,
 .countdown-section .kasavu-card {
+  position: relative;
+  overflow: hidden;
   border: 1.5px solid #7A1C2E;
-  box-shadow: 0 12px 36px rgba(122, 28, 46, 0.1), 0 4px 14px rgba(61, 42, 27, 0.05);
+  box-shadow: 0 14px 40px rgba(122, 28, 46, 0.12), 0 4px 14px rgba(61, 42, 27, 0.05);
+  background: var(--bg-card);
+}
+
+.countdown-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/countdown-bg.png');
+  background-position: center 38%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) contrast(1.05);
+  transform: scale(1.02);
+  z-index: 1;
+}
+
+.countdown-shade-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(253, 249, 242, 0.82) 0%,
+    rgba(250, 242, 230, 0.76) 50%,
+    rgba(245, 233, 218, 0.84) 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  z-index: 2;
+}
+
+.countdown-section .kasavu-card::before {
+  z-index: 3;
+}
+
+.countdown-content-wrap {
+  position: relative;
+  z-index: 4;
 }
 
 .countdown-heading {
   font-family: var(--font-serif-en);
   font-size: clamp(1.3rem, 3.2vw, 1.8rem);
   font-style: italic;
-  color: var(--earth-brown);
+  color: #3E2415;
   margin-bottom: 2rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .countdown-grid {
@@ -1306,26 +1346,31 @@ section {
 .countdown-number {
   font-family: var(--font-serif-en);
   font-size: clamp(2rem, 6vw, 3.25rem);
-  font-weight: 600;
-  color: var(--earth-brown);
+  font-weight: 700;
+  color: #381E10;
   line-height: 1;
   margin-bottom: 0.35rem;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
 }
 
 .countdown-label {
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: #8C6527;
   font-family: var(--font-serif-en);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
 }
 
 .countdown-separator {
   font-family: var(--font-serif-en);
   font-size: 1.8rem;
-  color: var(--gold-antique);
-  opacity: 0.6;
+  color: #8C6527;
+  opacity: 0.75;
   margin-top: -1.2rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
 }
 
 /* ==========================================================================
@@ -1342,7 +1387,7 @@ section {
    ========================================================================== */
 .story-scroll-section {
   position: relative;
-  height: 280vh; /* Provides generous scroll distance for smooth transitions */
+  height: 420vh; /* Generous height ensures slow, comfortable, and luxurious transitions */
   width: 100%;
   background: var(--bg-cream);
 }
@@ -1410,33 +1455,11 @@ section {
   height: 100%;
   max-height: clamp(340px, 54vh, 520px);
   opacity: 0;
-  transform: translateX(45px) scale(0.94);
-  pointer-events: none;
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.story-frameless-slide.active {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  pointer-events: auto;
-  z-index: 3;
-}
-
-.story-frameless-slide.prev {
-  opacity: 0;
-  transform: translateX(-45px) scale(0.94);
-  z-index: 1;
-}
-
-.story-frameless-slide.next {
-  opacity: 0;
-  transform: translateX(45px) scale(0.94);
-  z-index: 1;
+  pointer-events: none;
 }
 
 /* Frameless Container (No polaroid frames, mats, or corner brackets) */
@@ -1535,7 +1558,7 @@ section {
 
 @media (max-width: 480px) {
   .story-scroll-section {
-    height: 250vh;
+    height: 380vh;
   }
 
   .story-sticky-stage {

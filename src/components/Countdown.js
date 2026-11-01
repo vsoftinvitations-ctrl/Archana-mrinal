@@ -6,33 +6,39 @@ export function renderCountdown() {
   return `
     <section id="countdown-section" class="countdown-section">
       <div class="kasavu-card countdown-card" style="padding: clamp(2rem, 5vw, 3.5rem) 1.5rem; max-width: 720px; margin: 0 auto;">
-        <h2 class="countdown-heading reveal-on-scroll">${texts.countdownHeading}</h2>
+        <!-- Shaded Background Image of Wedding Rings Ceremony -->
+        <div class="countdown-bg-layer" aria-hidden="true"></div>
+        <div class="countdown-shade-overlay" aria-hidden="true"></div>
 
-        <div class="countdown-grid reveal-on-scroll">
-          <div class="countdown-box">
-            <span class="countdown-number" id="cd-days">00</span>
-            <span class="countdown-label">Days</span>
-          </div>
+        <div class="countdown-content-wrap">
+          <h2 class="countdown-heading reveal-on-scroll">${texts.countdownHeading}</h2>
 
-          <span class="countdown-separator">:</span>
+          <div class="countdown-grid reveal-on-scroll">
+            <div class="countdown-box">
+              <span class="countdown-number" id="cd-days">00</span>
+              <span class="countdown-label">Days</span>
+            </div>
 
-          <div class="countdown-box">
-            <span class="countdown-number" id="cd-hours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
+            <span class="countdown-separator">:</span>
 
-          <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+              <span class="countdown-number" id="cd-hours">00</span>
+              <span class="countdown-label">Hours</span>
+            </div>
 
-          <div class="countdown-box">
-            <span class="countdown-number" id="cd-minutes">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
+            <span class="countdown-separator">:</span>
 
-          <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+              <span class="countdown-number" id="cd-minutes">00</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
 
-          <div class="countdown-box">
-            <span class="countdown-number" id="cd-seconds">00</span>
-            <span class="countdown-label">Seconds</span>
+            <span class="countdown-separator">:</span>
+
+            <div class="countdown-box">
+              <span class="countdown-number" id="cd-seconds">00</span>
+              <span class="countdown-label">Seconds</span>
+            </div>
           </div>
         </div>
       </div>
