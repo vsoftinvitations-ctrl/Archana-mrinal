@@ -2957,7 +2957,8 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 32px;
+  padding: 6px 36px;
+  line-height: 1.25;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -2965,7 +2966,7 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   border-radius: 9999px;
   color: #FFFDF7;
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
