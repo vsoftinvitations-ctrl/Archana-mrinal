@@ -160,23 +160,32 @@ export function initPreloader() {
     }, 1850);
   }
 
-  // Click on "Tap to Open" button or anywhere on screen
+  // Open ONLY when the user explicitly clicks/taps the "Tap to Open" button
   const enterBtn = document.getElementById('preloader-enter-btn');
   if (enterBtn) {
+    let touched = false;
+
+    enterBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      touched = true;
+      handleTapToOpen();
+      setTimeout(() => { touched = false; }, 400);
+    }, { passive: false });
+
     enterBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      handleTapToOpen();
+      if (!touched) {
+        handleTapToOpen();
+      }
+    });
+
+    enterBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        handleTapToOpen();
+      }
     });
   }
-
-  preloader.addEventListener('click', () => {
-    handleTapToOpen();
-  });
-
-  // Also support keyboard Enter/Space/Escape
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
-      handleTapToOpen();
-    }
-  });
 }

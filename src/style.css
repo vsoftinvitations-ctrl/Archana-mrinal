@@ -2114,10 +2114,6 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   -webkit-user-select: none;
 }
 
-.wedding-preloader.preloader-ready-to-enter {
-  cursor: pointer;
-}
-
 .wedding-preloader.preloader-fade-out {
   opacity: 0;
   transform: scale(1.04);
@@ -2609,7 +2605,8 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   justify-content: center;
   z-index: 25;
   transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
 }
 
 .preloader-gate-content {
@@ -2620,6 +2617,7 @@ body.preloader-active #app>*:not(#wedding-preloader) {
   gap: 1.4rem;
   text-align: center;
   padding: 1.5rem;
+  pointer-events: none;
 }
 
 .preloader-gate-badge {
@@ -2656,6 +2654,7 @@ body.preloader-active #app>*:not(#wedding-preloader) {
 
 /* Small Tap to Open Pill Button */
 .preloader-open-pill-btn {
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
