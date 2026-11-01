@@ -12,7 +12,6 @@ import { renderFamilySection } from './components/FamilySection.js';
 import { renderCountdown, initCountdownTimer } from './components/Countdown.js';
 import { renderGallery, initGalleryCarousel } from './components/Gallery.js';
 import { renderLocationSection } from './components/LocationSection.js';
-import { renderRSVPSection } from './components/RSVPSection.js';
 import { renderClosingSection } from './components/ClosingSection.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ${renderCountdown()}
     ${renderGallery()}
     ${renderLocationSection()}
-    ${renderRSVPSection()}
     ${renderClosingSection()}
   `;
 
