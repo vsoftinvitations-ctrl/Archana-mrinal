@@ -21,7 +21,6 @@ export function renderGallery() {
             class="story-frameless-img"
           />
           <div class="story-img-overlay">
-            <span class="story-badge">Chapter 0${idx + 1}</span>
             <p class="story-caption">${img.caption || ''}</p>
           </div>
         </div>
