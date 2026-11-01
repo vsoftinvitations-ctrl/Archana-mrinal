@@ -13,14 +13,19 @@ export function initRosePetals() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  // Responsive petal count: delicate continuous red petal drift
+  const getPetalCount = () => (window.innerWidth <= 768 ? 9 : 14);
+  let maxPetals = getPetalCount();
+  const petals = [];
+
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    maxPetals = getPetalCount();
+    while (petals.length < maxPetals) {
+      petals.push(new Petal(false));
+    }
   });
-
-  // Maximum 5 petals at a time for elegant subtlety
-  const MAX_PETALS = 5;
-  const petals = [];
 
   class Petal {
     constructor(initial = false) {
@@ -30,17 +35,17 @@ export function initRosePetals() {
     reset(initial = false) {
       this.x = Math.random() * width;
       // If initial, scatter vertically across screen; otherwise start above viewport
-      this.y = initial ? Math.random() * height : -30 - Math.random() * 50;
-      this.size = 14 + Math.random() * 10; // 14px to 24px natural petal size
-      this.speedY = 0.4 + Math.random() * 0.45; // Very slow natural descent
+      this.y = initial ? Math.random() * height : -25 - Math.random() * 40;
+      this.size = 9 + Math.random() * 6; // Dainty, elegant 9px to 15px petite petals
+      this.speedY = 0.35 + Math.random() * 0.42; // Soft natural descent
       this.speedX = 0;
       this.angle = Math.random() * Math.PI * 2;
-      this.rotationSpeed = (Math.random() - 0.5) * 0.015;
-      this.oscillationFreq = 0.008 + Math.random() * 0.01;
-      this.oscillationAmp = 0.6 + Math.random() * 0.8;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.018;
+      this.oscillationFreq = 0.009 + Math.random() * 0.012;
+      this.oscillationAmp = 0.5 + Math.random() * 0.7;
       this.time = Math.random() * 1000;
       this.flip = Math.random() * Math.PI;
-      this.flipSpeed = 0.01 + Math.random() * 0.015;
+      this.flipSpeed = 0.012 + Math.random() * 0.016;
       // Vibrant red rose tones
       this.opacity = 0.72 + Math.random() * 0.22;
       this.hue = 352 + (Math.random() * 6 - 3); // Pure velvety red
@@ -96,7 +101,7 @@ export function initRosePetals() {
   }
 
   // Populate initial petals
-  for (let i = 0; i < MAX_PETALS; i++) {
+  for (let i = 0; i < maxPetals; i++) {
     petals.push(new Petal(true));
   }
 
